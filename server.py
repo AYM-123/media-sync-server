@@ -26,10 +26,10 @@ clients: Dict[int, ClientData] = dict()
 playback = PlaybackData()
 
 
-@app.route("/join", methods=["GET"])
+@app.route("/join", methods=["POST"])
 @cross_origin()
 def join():
-    username = request.args.get("username")
+    username = request.form.get("username")
 
     if username is None:
         print("Recieved no username")
@@ -44,10 +44,10 @@ def join():
     return response, 200
 
 
-@app.route("/leave", methods=["GET"])
+@app.route("/leave", methods=["POST"])
 @cross_origin()
 def leave():
-    id = request.args.get("id")
+    id = request.form.get("id")
 
     if id is None:
         print("Recieved no id")
@@ -58,11 +58,11 @@ def leave():
     return {}, 200
 
 
-@app.route("/ready", methods=["GET"])
+@app.route("/ready", methods=["POST"])
 @cross_origin()
 def ready():
-    id = request.args.get("id")
-    video_time = request.args.get("videoTime")
+    id = request.form.get("id")
+    video_time = request.form.get("videoTime")
 
     if id is None:
         print("Recieved no id")
@@ -70,7 +70,6 @@ def ready():
 
     if video_time is None:
         print("Received no videoTime")
-
         return "Ready Request missing VideoTime", 400
 
     id = int(id)
@@ -83,10 +82,10 @@ def ready():
     return {}, 200
 
 
-@app.route("/pause", methods=["GET"])
+@app.route("/pause", methods=["POST"])
 @cross_origin()
 def pause():
-    id = request.args.get("id")
+    id = request.form.get("id")
 
     if id is None:
         print("Recieved no id")
@@ -123,7 +122,6 @@ def update_time():
 @app.route("/check", methods=["GET"])
 @cross_origin()
 def check():
-
     response = dict()
 
     clients_status = []
