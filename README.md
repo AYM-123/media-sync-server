@@ -2,7 +2,7 @@
 
 **media-sync-server** is a server that handles real-time video synchronisation across multiple clients.
 
-This is the back-end for the [media-sync-client](https://github.com/AYM-123/media-sync-server).
+This is the back-end for the [media-sync-client](https://github.com/AYM-123/media-sync-client).
 
 ## Features
 - Automatic pause detection
